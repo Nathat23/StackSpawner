@@ -1,0 +1,15 @@
+name: StackSpawner
+main: uk.antiperson.stackspawner.StackSpawner
+version: 1.1.1
+author: antiPerson
+website: https://www.spigotmc.org/resources/stackspawner.34519/
+commands:
+    sts:
+        description: The main StackSpawner command.
+permissions:
+    stackspawner.stack:
+      description: Allows the player to stack monster spawners.
+    stackspawner.*:
+      description: All commands
+    stackspawner.commands:
+      description: Allows the player to list all commands
