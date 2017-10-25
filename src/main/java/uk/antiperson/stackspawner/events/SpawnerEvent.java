@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.SpawnerSpawnEvent;
 import uk.antiperson.stackmob.StackMob;
-import uk.antiperson.stackmob.api.StackMobAPI;
+import uk.antiperson.stackmob.api.EntityManager;
 import uk.antiperson.stackspawner.StackSpawner;
 
 /**
@@ -27,9 +27,9 @@ public class SpawnerEvent implements Listener {
             }
             int amount = (int) Math.round((0.5 + ss.util.random().nextDouble()) * ss.spawnerAmount.get(e.getSpawner().getLocation()));
             if(Bukkit.getPluginManager().getPlugin("StackMob") != null && Bukkit.getPluginManager().getPlugin("StackMob").isEnabled()){
-                StackMobAPI api = ((StackMob) Bukkit.getPluginManager().getPlugin("StackMob")).getAPI();
-                api.getEntityManager().addNewStack(e.getEntity(), amount);
-                ((StackMob) api.getPlugin()).noStack.add(e.getEntity().getUniqueId());
+                StackMob api = ((StackMob) Bukkit.getPluginManager().getPlugin("StackMob"));
+                EntityManager em = new EntityManager(api);
+                em.addNewStack(e.getEntity(), amount);
             }else{
                 for(int i = 0; i < amount; i++){
                     e.getEntity().getWorld().spawnEntity(e.getLocation(), e.getEntityType());

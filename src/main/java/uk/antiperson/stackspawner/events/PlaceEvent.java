@@ -36,9 +36,9 @@ public class PlaceEvent implements Listener {
                             CreatureSpawner cs = (CreatureSpawner) block.getState();
                             if(cs.getSpawnedType() == first.getSpawnedType()){
                                 ((CreatureSpawner) e.getBlock().getState()).setDelay(200);
-                                ((CreatureSpawner) e.getBlock().getState()).update();
+                                e.getBlock().getState().update();
                                 if(ss.spawnerAmount.containsKey(block.getLocation())){
-                                    if((ss.spawnerAmount.get(block.getLocation()) < ss.config.getFilecon().getInt("spawner.stacking.max")) || ss.config.getFilecon().getInt("spawner.stacking.max") == 0){
+                                    if((ss.spawnerAmount.get(block.getLocation()) < ss.config.getFilecon().getInt("spawner.stacking.limit")) || ss.config.getFilecon().getInt("spawner.stacking.limit") == 0){
                                         ss.spawnerAmount.put(block.getLocation(), ss.spawnerAmount.get(block.getLocation()) + 1);
                                         if(ss.config.getFilecon().getBoolean("spawner.nametag.display")){
                                             LivingEntity le = ss.util.getArmorStand(block);

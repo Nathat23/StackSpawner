@@ -1,5 +1,6 @@
 package uk.antiperson.stackspawner;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.antiperson.stackspawner.events.BreakEvent;
@@ -23,7 +24,7 @@ public class StackSpawner extends JavaPlugin {
     @Override
     public void onEnable(){
         getLogger().info("StackSpawner v" + getDescription().getVersion() + " by antiPerson");
-        getLogger().info("Find more information at " + getDescription().getVersion());
+        getLogger().info("Find more information at " + getDescription().getWebsite());
         sa.loadStacks();
         if(!config.exists()){
             getLogger().info("Generating new configuration file...");
@@ -36,6 +37,7 @@ public class StackSpawner extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BreakEvent(this), this);
         getCommand("sts").setExecutor(new Commands(this));
         getLogger().info("Regestered event listeners and commands!");
+        new Metrics(this);
     }
 
     @Override
